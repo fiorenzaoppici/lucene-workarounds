@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.TopDocs;
 import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.BaseParser;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -76,9 +82,8 @@ public class PDFTextExtractor{
       return parsedText;
     }
 
-    public ArrayList<String> extractPDFText(String dir){
+    public IndexWriter indexPDFDir(IndexWriter w,String dir) throws IOException {
 
-        ArrayList<String> extractedTexts = new ArrayList<String>();
         ArrayList<String> filenames = PDFSearch(dir);
 
         if(null == filenames){
@@ -87,18 +92,18 @@ public class PDFTextExtractor{
         }
         else{
             for (String filename: filenames){
-                filename=dir+"/"+filename;
-                 String extractedText = extractText(filename);
+                String fullFilename=dir+"/"+filename;
+                 String extractedText = extractText(fullFilename);
                  if(extractedText != null){
-                     extractedTexts.add(extractedText);
+                     Document doc = new Document();
+                     doc.add(new Field("Title" , filename, Field.Store.YES, Field.Index.ANALYZED));
+                     doc.add(new Field ("Text" , extractedText, Field.Store.YES, Field.Index.ANALYZED));
+                     w.addDocument(doc);
                  }
             }
-            if (extractedTexts.isEmpty()){
-                System.out.println("There were problems with the files in this directory");
-                return null;
-            }
         }
-        return extractedTexts;
+        System.out.println(w.numDocs());
+        return w;
     }
 
     public ArrayList<String> PDFSearch(String dir){
@@ -136,18 +141,15 @@ public class PDFTextExtractor{
         return filenames;
     }
 
-
-    public static void main(String[] args) {
-        PDFTextExtractor pdfte =new PDFTextExtractor();
-        String dir1="./PDFCorpus";
-        String dir2 = "./Lucene Workarounds.iml";
-        ArrayList<String> extractedTexts = pdfte.extractPDFText(dir1);
-        ArrayList<String> extractedTexts2 = pdfte.extractPDFText(dir2);
-
-        for(String text:extractedTexts){
-            System.out.println(text);
+    public static void printTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
+        System.out.println("Found " + hits.totalHits + " hits.");
+        for(int i=0;i<hits.totalHits;++i) {
+            float docScore =hits.scoreDocs[i].score;
+            int docId = hits.scoreDocs[i].doc;
+            Document d = searcher.doc(docId);
+            System.out.print((i + 1) + ". " + d.get("Title")+" Score:"+docScore) ;
+            System.out.println();
         }
-
-
     }
+
 }
