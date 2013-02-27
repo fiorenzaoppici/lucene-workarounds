@@ -1,0 +1,65 @@
+
+body{
+    font-family:"Helvetica";
+    color:#C44500;
+}
+
+h1{
+    font-size:30px;
+}
+
+#logodiv{
+    height:10%;
+}
+
+#menubar{
+    background-color:#C44500;
+    height:50px;
+    width:inherit;
+}
+
+.menuitem{
+    float:right;
+    display:inline-block;
+    color: white;
+    width:80px;
+    height:inherit;
+    font-size: 20px;
+    vertical-align:middle;
+}
+
+#searchpane{
+    margin-top:120px;
+    height:80px;
+    width: 500px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#DED8D5;
+    border: 1px solid grey;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+input{
+    width:280px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    display:inline-block;
+}
+
+#submit{
+    width:30px;
+    height:30px;
+    display:inline-block;
+    vertical-align:middle;
+    background-image: url("media/search.icon.png");
+}
+
+#fields{
+    display:block;
+    width:480px;
+    margin-left:auto;
+}

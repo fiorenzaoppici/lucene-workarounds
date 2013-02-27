@@ -14,6 +14,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
+
+
 import java.io.IOException;
 
 public class Hellolucene {
@@ -87,9 +89,11 @@ public class Hellolucene {
             int docId = hits[i].doc;
             Document d = searcher.doc(docId);
             System.out.print((i + 1) + ". " + d.get("title")) ;
-            if(d.get("subtitle").length()>0)
-                System.out.println(": " + d.get("subtitle"));
+            if(d.get("text").length()>0)
+                System.out.println(": " + d.get("text"));
             else System.out.println();
+
+
         }
     }
 }

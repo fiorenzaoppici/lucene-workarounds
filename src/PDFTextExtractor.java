@@ -96,7 +96,7 @@ public class PDFTextExtractor{
                  String extractedText = extractText(fullFilename);
                  if(extractedText != null){
                      Document doc = new Document();
-                     doc.add(new Field("Title" , filename, Field.Store.YES, Field.Index.ANALYZED));
+                     doc.add(new Field("Title" , filename, Field.Store.YES, Field.Index.NOT_ANALYZED));
                      doc.add(new Field ("Text" , extractedText, Field.Store.YES, Field.Index.ANALYZED));
                      w.addDocument(doc);
                  }
