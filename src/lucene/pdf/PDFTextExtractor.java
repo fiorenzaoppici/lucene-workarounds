@@ -1,3 +1,7 @@
+package lucene.pdf;
+
+
+
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +39,7 @@ public class PDFTextExtractor{
         }
 
     //method that parses a PDF file into plain text retrieved from a filename
-    public String extractText(String filename){
+    private String extractText(String filename){
         System.out.println("Extracting text from PDF document "+filename+".");
         File f=new File(filename);
 
@@ -88,7 +92,7 @@ public class PDFTextExtractor{
 
         if(null == filenames){
           System.out.println("Couldn't find no pdf files here");
-            return null;
+          return null;
         }
         else{
             for (String filename: filenames){
@@ -116,7 +120,7 @@ public class PDFTextExtractor{
         if (f.isDirectory()){
             File[] allFiles = f.listFiles();
             System.out.println();
-            System.out.println("All the .pdf files in the "+ prettydirectory +" directory:");
+            System.out.println("All the .pdf files in the"+ dir +" directory:");
             System.out.println();
             for(File f1: allFiles) {
                 if (f1.isFile()){
@@ -135,13 +139,13 @@ public class PDFTextExtractor{
             }
         }else{
             System.out.println();
-            System.out.println("The directory "+prettydirectory+" is invalid");
+            System.out.println("The directory "+dir+" is invalid");
             return null;
         }
         return filenames;
     }
 
-    public static void printTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
+    private static void printTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
         System.out.println("Found " + hits.totalHits + " hits.");
         for(int i=0;i<hits.totalHits;++i) {
             float docScore =hits.scoreDocs[i].score;

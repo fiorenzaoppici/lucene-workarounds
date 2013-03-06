@@ -1,3 +1,6 @@
+package lucene.pdf;
+
+
 import java.io.IOException;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -18,23 +21,24 @@ import org.apache.lucene.util.Version;
  * To change this template use File | Settings | File Templates.
  */
 public class PDFTest {
-
-    public static void main( String[]args) throws IOException, ParseException{
-
+    
         IndexReader ir;
         IndexWriter iw;
         IndexSearcher is;
         IndexWriterConfig iwc;
         RAMDirectory indexDir;  //faster than fsddirectory, non-permanent
         PDFTextExtractor pdfte;
+
         QueryParser qp;
         Query q;
+        String queryString = "";
         Sort s;
         SortField sf;
 
         StandardAnalyzer sa;
         String searchDir;
 
+    public TopDocs searchQuery() throws IOException, ParseException{
         //definizione dell' indice e dell'analizzatore
         indexDir = new RAMDirectory();
         searchDir = "./PDFCorpus";
@@ -48,7 +52,7 @@ public class PDFTest {
 
         iw.close();
         //definizione della query
-        q =new QueryParser(Version.LUCENE_35,"Text",sa ).parse("Music");
+        q =new QueryParser(Version.LUCENE_35,"Text",sa ).parse(queryString);
 
         //dovrebbe funzionare per ordinare i riusltati in ordine alfabetico ma nn funza.
         sf = new SortField("Title",SortField.STRING);
@@ -60,9 +64,21 @@ public class PDFTest {
         is.search(q,tpfc);
 
         TopDocs td = tpfc.topDocs(0,10);
-        pdfte.printTopDocs(td,is);
 
         ir.close();
         is.close();
+        
+        return td;
     }
+    
+    public String getQueryString(){
+        return this.queryString;
+    }
+    
+    public void setQueryString(String qstr){
+        this.queryString = qstr;
+    }
+    
 }
+
+

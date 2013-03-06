@@ -62,4 +62,36 @@ input{
     display:block;
     width:480px;
     margin-left:auto;
+    margin-top:20px;
+}
+
+#showResults{
+    width:700px;
+    height:200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.pdfElement{
+    width:200;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:red;
+    padding:10px;
+    margin: 80px;
+    display: block;
+}
+
+.pdfElement>a{
+    display:block;
+    color:black;
+    margin-top: 5px;
+}
+
+embed{
+    width:180;
+    height:320;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
