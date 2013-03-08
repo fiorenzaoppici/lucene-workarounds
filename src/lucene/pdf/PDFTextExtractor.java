@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
@@ -42,6 +41,8 @@ public class PDFTextExtractor{
     private String extractText(String filename){
         System.out.println("Extracting text from PDF document "+filename+".");
         File f=new File(filename);
+        
+        System.out.println();
 
         //check if the filename is valid
         if(!f.isFile()){
@@ -86,7 +87,7 @@ public class PDFTextExtractor{
       return parsedText;
     }
 
-    public IndexWriter indexPDFDir(IndexWriter w,String dir) throws IOException {
+    public IndexWriter indexPDFDir(IndexWriter w, String dir) throws IOException {
 
         ArrayList<String> filenames = PDFSearch(dir);
 
@@ -145,15 +146,16 @@ public class PDFTextExtractor{
         return filenames;
     }
 
-    private static void printTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
+    public static Document[] getTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
         System.out.println("Found " + hits.totalHits + " hits.");
+        Document[] docs = new Document[hits.totalHits];
         for(int i=0;i<hits.totalHits;++i) {
             float docScore =hits.scoreDocs[i].score;
             int docId = hits.scoreDocs[i].doc;
             Document d = searcher.doc(docId);
-            System.out.print((i + 1) + ". " + d.get("Title")+" Score:"+docScore) ;
-            System.out.println();
+            docs[i] = d;
         }
+        return docs;
     }
 
 }

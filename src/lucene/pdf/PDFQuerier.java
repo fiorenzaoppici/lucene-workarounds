@@ -20,43 +20,36 @@ import org.apache.lucene.util.Version;
  * Time: 11.07
  * To change this template use File | Settings | File Templates.
  */
-public class PDFTest {
+public class PDFQuerier {
     
-        IndexReader ir;
-        IndexWriter iw;
-        IndexSearcher is;
-        IndexWriterConfig iwc;
-        RAMDirectory indexDir;  //faster than fsddirectory, non-permanent
-        PDFTextExtractor pdfte;
-
-        QueryParser qp;
-        Query q;
-        String queryString = "";
-        Sort s;
-        SortField sf;
-
-        StandardAnalyzer sa;
-        String searchDir;
-
-    public TopDocs searchQuery() throws IOException, ParseException{
-        //definizione dell' indice e dell'analizzatore
+        private IndexReader ir;
+        private IndexWriter iw;
+        private IndexSearcher is;
+        private IndexWriterConfig iwc;
+        private RAMDirectory indexDir;  //faster than fsddirectory, non-permanent
+        private PDFTextExtractor pdfte;
+        private StandardAnalyzer sa;
+        
+    public void buildIndex(String searchDir)throws IOException{
         indexDir = new RAMDirectory();
-        searchDir = "./PDFCorpus";
         sa =new StandardAnalyzer(Version.LUCENE_35);
         iwc = new IndexWriterConfig(Version.LUCENE_35 , sa);
         iw = new IndexWriter(indexDir,iwc);
-
         //invocazione dell'indicizzazione speciale per i PDF
         pdfte = new PDFTextExtractor();
         pdfte.indexPDFDir(iw, searchDir);
 
         iw.close();
+    }    
+
+    public TopDocs searchQuery(String queryString) throws IOException, ParseException{
+
         //definizione della query
-        q =new QueryParser(Version.LUCENE_35,"Text",sa ).parse(queryString);
+        Query q =new QueryParser(Version.LUCENE_35,"Text",sa ).parse(queryString);
 
         //dovrebbe funzionare per ordinare i riusltati in ordine alfabetico ma nn funza.
-        sf = new SortField("Title",SortField.STRING);
-        s = new Sort(sf);
+        SortField sf = new SortField("Title",SortField.STRING);
+        Sort s = new Sort(sf);
         TopFieldCollector tpfc = TopFieldCollector.create(s,10, true, true, true, true);
         //ricerca della query
         ir = IndexReader.open(indexDir,true);
@@ -71,14 +64,8 @@ public class PDFTest {
         return td;
     }
     
-    public String getQueryString(){
-        return this.queryString;
-    }
-    
-    public void setQueryString(String qstr){
-        this.queryString = qstr;
+    public RAMDirectory getIndexDir(){
+        return indexDir;
     }
     
 }
-
-
