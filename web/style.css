@@ -31,6 +31,7 @@ h1{
 #searchpane{
     margin-top:120px;
     width: 500px;
+    height: 100px;
     margin-left:auto;
     margin-right:auto;
     display: block;
@@ -56,6 +57,7 @@ input{
     display:inline-block;
     vertical-align:middle;
     background-image: url("media/search.icon.png");
+    background-repeat: no-repeat;
 }
 
 #fields{
@@ -65,25 +67,65 @@ input{
     margin-top:20px;
 }
 
+#keywords{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+button{
+    border: none;
+    cursor: pointer;
+    color: #C44500;
+}
+
 #showResults{
     width:700px;
     height:200px;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#showResultsInfo{
+    font-size: 20px;
+    color: #D48639;
+    font-weight: bold;
+    margin-top: 80px;
+    height: 100px;
+}
+
+#showResultsInfo>span{
+    color: #C44500;
+}
+
+.resultAnchor{
+    font-size: 25px;
+    margin-top: 20px;
+}
+.textDesc{
+    margin-top: 15px;
+}
+
+table{
+   margin-left: auto;
+   margin-right: auto; 
+   width: inherit;
 }
 
 .pdfElement{
     width:120px;
-    background-color:red;
+    height: 130px;
     padding:10px;
-    margin: 80px;
     display: block;
+    overflow: hidden;
+    text-align: center;
 }
 
 .pdfElement>a{
     display:block;
     color:black;
     margin-top: 5px;
+    text-decoration: none;
 }
 
 embed{
@@ -92,6 +134,28 @@ embed{
     margin-left: auto;
     margin-right: auto;
     display: block;
-    overflow: hidden;
+}
 
+#errorPane{
+    background-color: #EDB19D;
+    width: 500px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    color: #C44500;
+}
+
+#about{
+    background-color: #F0D5A3;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    display: block;
+}
+
+#about>p>a{
+    text-decoration: none;
+    color: #698716;
 }
