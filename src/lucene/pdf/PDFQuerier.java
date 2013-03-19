@@ -1,6 +1,5 @@
 package lucene.pdf;
 
-
 import java.io.IOException;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -13,15 +12,7 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
-/**
- * Created with IntelliJ IDEA.
- * User: fiorenza
- * Date: 22/02/13
- * Time: 11.07
- * To change this template use File | Settings | File Templates.
- */
-public class PDFQuerier {
-    
+public class PDFQuerier {   
         private IndexReader ir;
         private IndexWriter iw;
         private IndexSearcher is;
@@ -41,7 +32,6 @@ public class PDFQuerier {
 
         iw.close();
     }    
-
     public TopDocs searchQuery(String queryString) throws IOException, ParseException{
 
         //definizione della query
@@ -62,8 +52,7 @@ public class PDFQuerier {
         is.close();
         
         return td;
-    }
-    
+    }    
     public RAMDirectory getIndexDir(){
         return indexDir;
     }

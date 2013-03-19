@@ -1,7 +1,5 @@
 package lucene.pdf;
 
-
-
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,14 +15,10 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.util.PDFTextStripper;
-
-
-
 /*
   Expansion of the PDFTextParser class example by Prasanna Seshandri,
   http://www.prasannatech.net/2009/01/convert-pdf-text-parser-java-api-pdfbox.html
  */
-
 public class PDFTextExtractor{
         PDFParser parser;
         String parsedText;
@@ -36,20 +30,16 @@ public class PDFTextExtractor{
         public PDFTextExtractor(){
 
         }
-
     //method that parses a PDF file into plain text retrieved from a filename
     private String extractText(String filename){
         System.out.println("Extracting text from PDF document "+filename+".");
-        File f=new File(filename);
-        
+        File f=new File(filename);       
         System.out.println();
-
         //check if the filename is valid
         if(!f.isFile()){
             System.out.println("File "+filename+" doesn't exist.");
             return null;
         }
-
         //let's try to open the PDFParser on a bytestream
         try{
             FileInputStream fis = new FileInputStream(f);
@@ -58,7 +48,6 @@ public class PDFTextExtractor{
             System.out.println("Couldn't open PDFParser");
             return null;
         }
-
         //let's try to parse the text and extract the string text from the returned document
         try{
             parser.parse();
@@ -70,7 +59,6 @@ public class PDFTextExtractor{
         }catch(Exception e){
             System.out.print("Couldn't properly parse the PDF document");
             e.printStackTrace();
-
             //try to see if the document streams have been declared, and close them in case (saves memory)
                 try{
                       if (cosDoc != null){
@@ -90,7 +78,6 @@ public class PDFTextExtractor{
     public IndexWriter indexPDFDir(IndexWriter w, String dir) throws IOException {
 
         ArrayList<String> filenames = PDFSearch(dir);
-
         if(null == filenames){
           System.out.println("Couldn't find no pdf files here");
           return null;
@@ -110,14 +97,11 @@ public class PDFTextExtractor{
         System.out.println(w.numDocs());
         return w;
     }
-
     public ArrayList<String> PDFSearch(String dir){
-
         String directory = dir;
         String prettydirectory=dir.substring(2);
         ArrayList<String>filenames = new ArrayList<String>();
         File f= new File(dir);
-
         if (f.isDirectory()){
             File[] allFiles = f.listFiles();
             System.out.println();
@@ -145,7 +129,6 @@ public class PDFTextExtractor{
         }
         return filenames;
     }
-
     public static Document[] getTopDocs(TopDocs hits, IndexSearcher searcher) throws IOException{
         System.out.println("Found " + hits.totalHits + " hits.");
         Document[] docs = new Document[hits.totalHits];
@@ -157,5 +140,4 @@ public class PDFTextExtractor{
         }
         return docs;
     }
-
 }

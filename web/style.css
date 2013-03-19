@@ -1,161 +1,192 @@
+/***********************
+    GENERAL STYLES
+************************/
 
-body{
-    font-family:"Helvetica";
+body {
+	font-family:"Helvetica";
 }
-
-h1{
-    font-size:30px;
-    color:#C44500;
+h1 {
+	font-size:30px;
+	color:#C44500;
 }
+/***********************
+     LOGO AND MENU
+************************/
 
-#logodiv{
-    height:10%;
+#logodiv {
+	height:10%;
 }
-
-#menubar{
-    background-color:#C44500;
-    height:50px;
-    width:inherit;
+#menubar {
+	background-color:#C44500;
+	height:50px;
+	width:inherit;
+	/*gradient code*/
+background:#e8bda7;
+	/* Old browsers */
+background:-moz-linear-gradient(top, #e8bda7 0%, #ef7f0e 16%, #c44500 100%);
+	/* FF3.6+ */
+background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8bda7), color-stop(16%,#ef7f0e), color-stop(100%,#c44500));
+	/* Chrome,Safari4+ */
+background:-webkit-linear-gradient(top, #e8bda7 0%,#ef7f0e 16%,#c44500 100%);
+	/* Chrome10+,Safari5.1+ */
+background:-o-linear-gradient(top, #e8bda7 0%,#ef7f0e 16%,#c44500 100%);
+	/* Opera 11.10+ */
+background:-ms-linear-gradient(top, #e8bda7 0%,#ef7f0e 16%,#c44500 100%);
+	/* IE10+ */
+background:linear-gradient(to bottom, #e8bda7 0%,#ef7f0e 16%,#c44500 100%);
+	/* W3C */
+filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8bda7', endColorstr='#c44500',GradientType=0 );
 }
+.menuitem {
+	float:right;
+	display:inline-block;
+	color:white;
+	width:80px;
+	height:inherit;
+	font-size:20px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+/*********************
+    SEARCH PANEL
+*********************/
 
-.menuitem{
+#searchpane {
+	margin-top:120px;
+	width:500px;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	background-color:#DED8D5;
+	border:1px solid grey;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+	-webkit-box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+	-moz-box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+	box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+}
+input {
+	width:280px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	display:inline-block;
+}
+#submit {
+	width:30px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background-image:url("media/search.icon.png");
+	background-repeat:no-repeat;
+}
+#fields {
+	display:block;
+	width:480px;
+	margin-left:auto;
+	margin-top:20px;
+}
+#keywords {
+	margin-top:20px;
+	margin-left:20px;
+}
+button {
+	border:none;
+	cursor:pointer;
+	color:#C44500;
+}
+/*********************
+  DISPLAY SEARCH HITS
+**********************/
+
+#showResults {
+	width:700px;
+	height:200px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#showResultsInfo {
+	font-size:20px;
+	color:#D48639;
+	font-weight:bold;
+	margin-top:80px;
+	height:50px;
+	display:block;
+}
+#showResultsInfo>span {
+	color:#C44500;
+}
+.resultAnchor {
+	font-size:25px;
+	margin-top:20px;
+}
+.textDesc {
+	margin-top:15px;
+}
+table {
+	margin-left:auto;
+	margin-right:auto;
+	width:inherit;
+}
+.pdfElement {
+	width:120px;
+	height:130px;
+	padding:10px;
+	display:block;
+	overflow:hidden;
+	text-align:center;
+}
+.pdfElement>a {
+	display:block;
+	color:black;
+	margin-top:5px;
+	text-decoration:none;
+}
+embed {
+	width:80px;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+/************************
+  NO RESULTS RETURNED
+*************************/
+
+#errorPane {
+	background-color:#EDB19D;
+	width:500px;
+	padding:20px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:140px;
+	color:#C44500;
+}
+/************************
+    INFO PANEL
+************************/
+
+#about {
+	background-color:#F0D5A3;
+	width:600px;
+	height:300px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+	padding:50px;
+	display:none;
+	-webkit-box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+	-moz-box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+	box-shadow:12px 10px 14px rgba(32, 32, 28, 0.35);
+}
+#about>p>a {
+	text-decoration:none;
+	color:#698716;
+}
+#about>img{
     float:right;
-    display:inline-block;
-    color: white;
-    width:80px;
-    height:inherit;
-    font-size: 20px;
-    vertical-align:middle;
-}
-
-#searchpane{
-    margin-top:120px;
-    width: 500px;
-    height: 100px;
-    margin-left:auto;
-    margin-right:auto;
-    display: block;
-    background-color:#DED8D5;
-    border: 1px solid grey;
-
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-}
-
-input{
-    width:280px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    display:inline-block;
-}
-
-#submit{
-    width:30px;
-    height:30px;
-    display:inline-block;
-    vertical-align:middle;
-    background-image: url("media/search.icon.png");
-    background-repeat: no-repeat;
-}
-
-#fields{
-    display:block;
-    width:480px;
-    margin-left:auto;
-    margin-top:20px;
-}
-
-#keywords{
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-button{
-    border: none;
-    cursor: pointer;
-    color: #C44500;
-}
-
-#showResults{
-    width:700px;
-    height:200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-#showResultsInfo{
-    font-size: 20px;
-    color: #D48639;
-    font-weight: bold;
-    margin-top: 80px;
-    height: 100px;
-}
-
-#showResultsInfo>span{
-    color: #C44500;
-}
-
-.resultAnchor{
-    font-size: 25px;
-    margin-top: 20px;
-}
-.textDesc{
-    margin-top: 15px;
-}
-
-table{
-   margin-left: auto;
-   margin-right: auto; 
-   width: inherit;
-}
-
-.pdfElement{
-    width:120px;
-    height: 130px;
-    padding:10px;
-    display: block;
-    overflow: hidden;
-    text-align: center;
-}
-
-.pdfElement>a{
-    display:block;
-    color:black;
-    margin-top: 5px;
-    text-decoration: none;
-}
-
-embed{
-    width:80px;
-    height:100px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-#errorPane{
-    background-color: #EDB19D;
-    width: 500px;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 140px;
-    color: #C44500;
-}
-
-#about{
-    background-color: #F0D5A3;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    display: block;
-}
-
-#about>p>a{
-    text-decoration: none;
-    color: #698716;
+    width:40px;
+    height:40px;
 }
